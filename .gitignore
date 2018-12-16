@@ -259,3 +259,6 @@ fabric.properties
 .venv/
 
 # End of https://www.gitignore.io/api/pycharm,python,django
+.idea/vcs.xml
+.idea/encodings.xml
+.idea/misc.xml

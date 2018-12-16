@@ -4,8 +4,21 @@ from django.shortcuts import render
 
 # function based view
 def home(request):
-    num = random.randint(0, 1000000)
+
+    num = None
+
+    some_list = [
+        random.randint(0, 1000000),
+        random.randint(0, 1000000),
+        random.randint(0, 1000000)
+    ]
+
+    condition_bool_item = True
+
+    if condition_bool_item:
+        num = random.randint(0, 1000000)
+
     return render(request, 'base.html', {
-        'html_var': True,
-        'num': num
+        'num': num,
+        'some_list': some_list
     })

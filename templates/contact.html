@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ block.super }} || Contact{% endblock title %}
+{% block title %}Contact || {{ block.super }}{% endblock title %}
 
 {% block content %}
 
 <h1>Contact</h1>
+
+{% include 'snippets/sidebar.html' %}
 
 {% endblock content %}

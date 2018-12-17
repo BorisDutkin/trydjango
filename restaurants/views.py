@@ -1,5 +1,6 @@
 import random
 from django.shortcuts import render
+from django.views import View
 
 
 # function based view
@@ -64,4 +65,19 @@ def contact(request):
         'num': num,
         'some_list': some_list
     })
+
+
+class ContactView(View):
+    def get(self, request, *args, **kwargs):
+        context = {}
+        return render(request, 'contact.html', context)
+
+    # def post(self, request, *args, **kwargs):
+    #     context = {}
+    #     return render(request, 'contact.html', context)
+    #
+    # def put(self, request, *args, **kwargs):
+    #     context = {}
+    #     return render(request, 'contact.html', context)
+
 

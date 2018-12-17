@@ -19,12 +19,13 @@ from django.urls import path
 from restaurants.views import (
     home,
     about,
-    contact
+    contact,
+    ContactView
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
     path('about/', about),
-    path('contact/', contact),
+    path('contact/', ContactView.as_view()),
 ]

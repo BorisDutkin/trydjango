@@ -1,83 +1,24 @@
 import random
 from django.shortcuts import render
 from django.views import View
+from django.views.generic import TemplateView
 
 
-# function based view
-def home(request):
+class HomeView(TemplateView):
+    template_name = 'home.html'
 
-    num = None
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['num'] = None
+        context['some_list'] = [
+            random.randint(0, 1000000),
+            random.randint(0, 1000000),
+            random.randint(0, 1000000)
+        ]
+        context['condition_bool_item'] = True
+        condition_bool_item = True
 
-    some_list = [
-        random.randint(0, 1000000),
-        random.randint(0, 1000000),
-        random.randint(0, 1000000)
-    ]
+        if condition_bool_item:
+            context['num'] = random.randint(0, 1000000)
 
-    condition_bool_item = True
-
-    if condition_bool_item:
-        num = random.randint(0, 1000000)
-
-    return render(request, 'home.html', {
-        'num': num,
-        'some_list': some_list
-    })
-
-
-def about(request):
-
-    num = None
-
-    some_list = [
-        random.randint(0, 1000000),
-        random.randint(0, 1000000),
-        random.randint(0, 1000000)
-    ]
-
-    condition_bool_item = True
-
-    if condition_bool_item:
-        num = random.randint(0, 1000000)
-
-    return render(request, 'about.html', {
-        'num': num,
-        'some_list': some_list
-    })
-
-
-def contact(request):
-
-    num = None
-
-    some_list = [
-        random.randint(0, 1000000),
-        random.randint(0, 1000000),
-        random.randint(0, 1000000)
-    ]
-
-    condition_bool_item = True
-
-    if condition_bool_item:
-        num = random.randint(0, 1000000)
-
-    return render(request, 'contact.html', {
-        'num': num,
-        'some_list': some_list
-    })
-
-
-class ContactView(View):
-    def get(self, request, *args, **kwargs):
-        context = {}
-        return render(request, 'contact.html', context)
-
-    # def post(self, request, *args, **kwargs):
-    #     context = {}
-    #     return render(request, 'contact.html', context)
-    #
-    # def put(self, request, *args, **kwargs):
-    #     context = {}
-    #     return render(request, 'contact.html', context)
-
-
+        return context

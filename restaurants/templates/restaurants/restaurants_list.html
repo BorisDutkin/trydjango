@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Restaurants | {{ block.super }}{% endblock title %}
+
+{% block content %}
+
+<br>
+
+<h1 class="title">Restaurants</h1>
+<h2 class="subtitle">List</h2>
+
+{% if list %}
+
+    <ul>
+    {% for restaurant in list %}
+        <li>{{ restaurant.name }}</li>
+    {% endfor %}
+    </ul>
+
+{% endif %}
+
+{% endblock content %}

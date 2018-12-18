@@ -10,10 +10,28 @@
   },
   {
     "model": "restaurants.RestaurantLocation",
-    "pk": 1,
+    "pk": 2,
     "fields": {
       "name": "TNT",
       "location": "Newport Beach",
+      "category": "Mexican"
+    }
+  },
+  {
+    "model": "restaurants.RestaurantLocation",
+    "pk": 3,
+    "fields": {
+      "name": "Pei Wei",
+      "location": "Newport Beach",
+      "category": "Asian Fusion"
+    }
+  },
+  {
+    "model": "restaurants.RestaurantLocation",
+    "pk": 4,
+    "fields": {
+      "name": "Chronic Tacos",
+      "location": "Corona Del Mar",
       "category": "Mexican"
     }
   }

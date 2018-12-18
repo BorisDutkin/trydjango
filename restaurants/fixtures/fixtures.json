@@ -1,0 +1,20 @@
+[
+  {
+    "model": "restaurants.RestaurantLocation",
+    "pk": 1,
+    "fields": {
+      "name": "Baja Fish Tacos",
+      "location": "Baja Fish Tacos",
+      "category": "Mexican"
+    }
+  },
+  {
+    "model": "restaurants.RestaurantLocation",
+    "pk": 1,
+    "fields": {
+      "name": "TNT",
+      "location": "Newport Beach",
+      "category": "Mexican"
+    }
+  }
+]

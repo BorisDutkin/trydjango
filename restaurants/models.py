@@ -1,4 +1,6 @@
+from django.utils.text import slugify
 from django.db import models
+from django.db.models.signals import pre_save
 
 
 class RestaurantLocation(models.Model):
@@ -15,3 +17,12 @@ class RestaurantLocation(models.Model):
     @property
     def title(self):
         return self.name
+
+
+def restaurant_location_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = slugify(instance.title)
+
+
+pre_save.connect(restaurant_location_pre_save_receiver, sender=RestaurantLocation)
+

@@ -29,8 +29,9 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html')),
     path('restaurants/', RestaurantListView.as_view()),
     path('restaurants/search/<slug:search>/', RestaurantListView.as_view()),
-    # path('restaurants/<int:id>/', RestaurantDetailView.as_view()),
-    path('restaurants/<int:pk>/', RestaurantDetailView.as_view()),
+    # path('restaurants/<int:id>/', RestaurantDetailView.as_view()), # use custom id
+    # path('restaurants/<int:pk>/', RestaurantDetailView.as_view()), # use pk
+    path('restaurants/<slug:slug>/', RestaurantDetailView.as_view()),
     path('about/', TemplateView.as_view(template_name='about.html')),
     path('contact/', TemplateView.as_view(template_name='contact.html')),
 ]

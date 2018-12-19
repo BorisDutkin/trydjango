@@ -34,7 +34,7 @@ class RestaurantListView(ListView):
 class RestaurantDetailView(DetailView):
     model = RestaurantLocation
 
-    # # implementation for custom parameter (not pk)
+    # # implementation for custom "id" parameter (not pk)
     # def get_object(self, *args, **kwargs):
     #     restaurant_id = self.kwargs.get('id')
     #     restaurant = get_object_or_404(RestaurantLocation, id=restaurant_id)

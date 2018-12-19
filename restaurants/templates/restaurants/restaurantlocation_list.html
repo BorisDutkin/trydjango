@@ -9,10 +9,10 @@
 <h1 class="title">Restaurants</h1>
 <h2 class="subtitle">List</h2>
 
-{% if list %}
+{% if object_list %}
 
     <ul>
-    {% for restaurant in list %}
+    {% for restaurant in object_list %}
         <li>{{ restaurant.name }}</li>
     {% endfor %}
     </ul>

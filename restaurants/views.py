@@ -1,6 +1,6 @@
 from django.db.models import Q
-from django.shortcuts import render
-from django.views.generic import ListView
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
 
 from .models import RestaurantLocation
 
@@ -29,3 +29,14 @@ class RestaurantListView(ListView):
             queryset = RestaurantLocation.objects.all()
 
         return queryset
+
+
+class RestaurantDetailView(DetailView):
+    model = RestaurantLocation
+
+    # # implementation for custom parameter (not pk)
+    # def get_object(self, *args, **kwargs):
+    #     restaurant_id = self.kwargs.get('id')
+    #     restaurant = get_object_or_404(RestaurantLocation, id=restaurant_id)
+    #     return restaurant
+

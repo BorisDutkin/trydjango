@@ -9,22 +9,22 @@ from .forms import RestaurantCreateForm
 
 def restaurant_create(request):
 
-    if request.method == 'POST':
+    form = RestaurantCreateForm(request.POST or None)
+    errors = None
 
-        title = request.POST.get('title')
-        location = request.POST.get('location')
-        category = request.POST.get('category')
-
-        obj = RestaurantLocation.objects.create(
-            name = title,
-            location = location,
-            category = category
+    if form.is_valid():
+        restaurant = RestaurantLocation.objects.create(
+            name=form.cleaned_data.get('name'),
+            location=form.cleaned_data.get('location'),
+            category=form.cleaned_data.get('category'),
         )
-
         return HttpResponseRedirect('/restaurants')
 
+    if form.errors:
+        errors = form.errors
+
     template_name = 'restaurants/form.html'
-    context = {}
+    context = {'form': form, 'errors': errors}
     return render(request, template_name, context)
 
 

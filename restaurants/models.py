@@ -2,9 +2,11 @@ from django.utils.text import slugify
 from django.db import models
 from django.db.models.signals import pre_save
 from .validators import validate_category
+from django.contrib.auth.models import User
 
 
 class RestaurantLocation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=120)
     location = models.CharField(max_length=120, null=True, blank=True)
     category = models.CharField(max_length=120, null=True, blank=True, validators=[validate_category])

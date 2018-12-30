@@ -8,8 +8,8 @@
 
 <h1>Add Restaurant</h1>
 
-{% if errors %}
-{{ errors }}
+{% if form.errors.non_field_errors %}
+{{ form.errors }}
 {% endif %}
 
 <form method="post">

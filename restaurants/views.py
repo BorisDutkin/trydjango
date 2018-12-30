@@ -1,23 +1,19 @@
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from django.http import HttpResponseRedirect
 
 from .models import RestaurantLocation
-from .forms import RestaurantCreateForm
+from .forms import RestaurantCreateForm, RestaurantLocationCreateForm
 
 
 def restaurant_create(request):
 
-    form = RestaurantCreateForm(request.POST or None)
+    form = RestaurantLocationCreateForm(request.POST or None)
     errors = None
 
     if form.is_valid():
-        restaurant = RestaurantLocation.objects.create(
-            name=form.cleaned_data.get('name'),
-            location=form.cleaned_data.get('location'),
-            category=form.cleaned_data.get('category'),
-        )
+        form.save()
         return HttpResponseRedirect('/restaurants')
 
     if form.errors:
@@ -57,9 +53,8 @@ class RestaurantListView(ListView):
 class RestaurantDetailView(DetailView):
     model = RestaurantLocation
 
-    # # implementation for custom "id" parameter (not pk)
-    # def get_object(self, *args, **kwargs):
-    #     restaurant_id = self.kwargs.get('id')
-    #     restaurant = get_object_or_404(RestaurantLocation, id=restaurant_id)
-    #     return restaurant
 
+class RestaurantCreateView(CreateView):
+    form_class = RestaurantLocationCreateForm
+    template_name = 'restaurants/form.html'
+    success_url = '/restaurants'

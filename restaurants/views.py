@@ -1,12 +1,15 @@
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import RestaurantLocation
 from .forms import RestaurantCreateForm, RestaurantLocationCreateForm
 
 
+@login_required(login_url='/admin/login/')
 def restaurant_create(request):
 
     form = RestaurantLocationCreateForm(request.POST or None)
@@ -59,11 +62,12 @@ class RestaurantDetailView(DetailView):
     model = RestaurantLocation
 
 
-class RestaurantCreateView(CreateView):
+class RestaurantCreateView(LoginRequiredMixin, CreateView):
 
     form_class = RestaurantLocationCreateForm
     template_name = 'restaurants/form.html'
-    success_url = '/restaurants'
+    success_url = '/restaurants/'
+    login_url = '/admin/login/'  # overrides global login url in the settings
 
     def form_valid(self, form):
         instance = form.save(commit=False)

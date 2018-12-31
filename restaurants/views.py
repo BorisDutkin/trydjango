@@ -9,7 +9,7 @@ from .models import RestaurantLocation
 from .forms import RestaurantCreateForm, RestaurantLocationCreateForm
 
 
-@login_required(login_url='/admin/login/')
+@login_required(login_url='/login/')
 def restaurant_create(request):
 
     form = RestaurantLocationCreateForm(request.POST or None)
@@ -67,7 +67,7 @@ class RestaurantCreateView(LoginRequiredMixin, CreateView):
     form_class = RestaurantLocationCreateForm
     template_name = 'restaurants/form.html'
     success_url = '/restaurants/'
-    login_url = '/admin/login/'  # overrides global login url in the settings
+    login_url = '/login/'  # overrides global login url in the settings
 
     def form_valid(self, form):
         instance = form.save(commit=False)

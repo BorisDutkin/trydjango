@@ -54,7 +54,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'trydjango.urls'
 
-LOGIN_URL = '/admin/login/'
+LOGIN_URL = '/login/'
 
 TEMPLATES = [
     {

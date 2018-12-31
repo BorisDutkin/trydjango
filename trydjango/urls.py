@@ -20,13 +20,14 @@ from django.views.generic import TemplateView
 from restaurants.views import (
     RestaurantListView,
     RestaurantDetailView,
-    RestaurantCreateView
+    RestaurantCreateView,
+    restaurant_create
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='home.html')),
-    path('restaurants/create/', RestaurantCreateView.as_view()),
+    path('restaurants/create/', restaurant_create),
     path('restaurants/', RestaurantListView.as_view()),
     path('restaurants/search/<slug:search>/', RestaurantListView.as_view()),
     # path('restaurants/<int:id>/', RestaurantDetailView.as_view()), # use custom id

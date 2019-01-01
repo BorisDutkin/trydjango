@@ -14,27 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView, PasswordResetView
 
-from restaurants.views import (
-    RestaurantListView,
-    RestaurantDetailView,
-    RestaurantCreateView
-)
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='home.html')),
+    path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('login/', LoginView.as_view(), name='login'),
     path('password_reset/', PasswordResetView.as_view(), name='password_reset'),
-    path('restaurants/create/', RestaurantCreateView.as_view()),
-    path('restaurants/', RestaurantListView.as_view()),
-    path('restaurants/search/<slug:search>/', RestaurantListView.as_view()),
-    # path('restaurants/<int:id>/', RestaurantDetailView.as_view()), # use custom id
-    # path('restaurants/<int:pk>/', RestaurantDetailView.as_view()), # use pk
-    path('restaurants/<slug:slug>/', RestaurantDetailView.as_view()),
-    path('about/', TemplateView.as_view(template_name='about.html')),
-    path('contact/', TemplateView.as_view(template_name='contact.html')),
+    path('restaurants/', include('restaurants.urls', namespace='restaurants')),
+    path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
+    path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),
 ]

@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models.signals import pre_save
 from .validators import validate_category
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class RestaurantLocation(models.Model):
@@ -20,6 +21,9 @@ class RestaurantLocation(models.Model):
     @property
     def title(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('restaurants:detail', kwargs={'slug': self.slug})
 
 
 def restaurant_location_pre_save_receiver(sender, instance, *args, **kwargs):

@@ -16,8 +16,9 @@
 {% endif %}
 
 <form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-{{ form.as_p }}
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
 </form>
 
 {# Assumes you setup the password_reset view in your URLconf #}

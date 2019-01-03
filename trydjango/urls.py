@@ -23,6 +23,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('login/', LoginView.as_view(), name='login'),
     path('password_reset/', PasswordResetView.as_view(), name='password_reset'),
+    path('items/', include('menus.urls', namespace='menus')),
     path('restaurants/', include('restaurants.urls', namespace='restaurants')),
     path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
     path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),

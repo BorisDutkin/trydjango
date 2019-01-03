@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Menu Items | {{ block.super }}{% endblock title %}
+
+{% block content %}
+
+<br>
+
+<h1 class="title">Menu Items</h1>
+<h2 class="subtitle">List</h2>
+
+{% if object_list %}
+
+    <ul>
+
+    {% for item in object_list %}
+        <li>
+            <a href="{{ item.get_absolute_url }}">{{ item.name }}</a>
+
+            {% if item.contents %}
+
+            <div>----------</div>
+
+            <label>Contents:</label>
+
+            <ul>
+                {% for item in item.get_contents %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if item.excludes %}
+
+            <div>----------</div>
+
+            <label>Excludes:</label>
+
+            <ul>
+                {% for item in item.get_excludes %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <hr>
+            <hr>
+
+        </li>
+    {% endfor %}
+
+    </ul>
+
+{% endif %}
+
+{% endblock content %}
